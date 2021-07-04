@@ -28,6 +28,7 @@ namespace NetGraphqlExample.BlogService
             services
                 .AddGraphQLServer()
                 .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
                 .ModifyRequestOptions(x => x.IncludeExceptionDetails = true)
                 .AddDataLoader<IUserDataLoader, UserDataLoader>()
                 .AddDataLoader<ICommentDataLoader, CommentDataLoader>()

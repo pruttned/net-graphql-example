@@ -42,6 +42,27 @@ dotnet watch run -p .\NetGraphqlExample.BlogService\
 }
 ```
 
+```graphql
+{
+  p1: post(id: 1) {
+    ...postFields
+  }
+
+  p2: post(id: 2) {
+    ...postFields
+  }
+}
+
+fragment postFields on Post {
+  title
+  text
+  comments {
+    idPost
+    text
+  }
+}
+```
+
 
 ```graphql
 {
@@ -52,6 +73,33 @@ dotnet watch run -p .\NetGraphqlExample.BlogService\
       idPost
       text
     }
+  }
+}
+```
+
+```graphql
+query getPost($id: Int!) {
+  p1: post(id: $id) {
+    title
+    text
+    comments {
+      idPost
+      text
+    }
+  }
+}
+
+variables:
+{
+  "id":3
+}
+```
+
+
+```graphql
+mutation{
+  addComment(idPost:1, text:"my new comment"){
+    id
   }
 }
 ```
